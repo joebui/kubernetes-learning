@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: controller-swagger-ui
+spec:
+  replicas: 2
+  selector:
+    app: swagger-ui
+  template:
+    metadata:
+      labels:
+        app: swagger-ui
+    spec:
+      containers:
+        - name: swagger-ui
+          image: swaggerapi/swagger-ui:v3.31.1
+          ports:
+            - name: swagger-ui-port
+              containerPort: 8080

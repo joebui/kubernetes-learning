@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-swagger-ui
+spec:
+  ports:
+    - port: 8080
+      targetPort: swagger-port
+      protocol: TCP
+  selector:
+    app: swagger-ui
+  type: LoadBalancer
