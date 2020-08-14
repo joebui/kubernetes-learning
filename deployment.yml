@@ -21,3 +21,9 @@ spec:
           ports:
             - name: swagger-ui-port
               containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutDelaySeconds: 35
