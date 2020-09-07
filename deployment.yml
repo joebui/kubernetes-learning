@@ -5,8 +5,8 @@ metadata:
   labels:
     app: swagger-ui
 spec:
-  replicas: 5
-  revisionHistoryLimit: 5
+  replicas: 3
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: swagger-ui
@@ -26,4 +26,10 @@ spec:
               path: /
               port: 8080
             initialDelaySeconds: 15
-            timeoutDelaySeconds: 35
+            timeoutSeconds: 35
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 35
