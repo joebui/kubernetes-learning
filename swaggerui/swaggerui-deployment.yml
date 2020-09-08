@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-swagger-ui
+  name: swaggerui-deployment
   labels:
     app: swagger-ui
 spec:
@@ -21,6 +21,14 @@ spec:
           ports:
             - name: swagger-ui-port
               containerPort: 8080
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: swaggerui-secrets
+                  key: password
+            - name: TESTING_HOST
+              value: 127.0.0.1
           livenessProbe:
             httpGet:
               path: /
