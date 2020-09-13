@@ -5,7 +5,12 @@ metadata:
 spec:
   ports:
     - port: 8080
+      name: swagger-ui-port
       targetPort: swagger-ui-port
+      protocol: TCP
+    - port: 80
+      name: nginx-port
+      targetPort: nginx-port
       protocol: TCP
   selector:
     app: swagger-ui

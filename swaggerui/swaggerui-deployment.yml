@@ -5,7 +5,7 @@ metadata:
   labels:
     app: swagger-ui
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -41,3 +41,18 @@ spec:
               port: 8080
             initialDelaySeconds: 15
             timeoutSeconds: 35
+        - name: nginx-swagger-ui
+          image: nginx:latest
+          ports:
+            - name: nginx-port
+              containerPort: 80
+          volumeMounts:
+            - name: nginx-volume
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: nginx-volume
+          configMap:
+            name: nginx-config
+            items:
+              - key: nginx-reverseproxy.conf
+                path: nginx-reverseproxy.conf
